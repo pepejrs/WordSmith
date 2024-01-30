@@ -1,25 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
+import TextEditor from "./components/TextEditor.js"
+import Home from "./components/Home.js"
+import {Routes,Route} from "react-router-dom"
+import { v4 as uuidV4 } from "uuid"
 
 function App() {
+  const SERVER_URL =
+  process.env.NODE_ENV === "production"
+    ? "https://guesswhoserver.onrender.com"
+    : "http://localhost:7000";
+    
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <Routes>
+        <Route path="/" exact element={<Home/>}></Route>
+        <Route path="/documents/:id" element={<TextEditor SERVER_URL={SERVER_URL}/>}></Route>
+    </Routes>
+  )
 }
 
-export default App;
+export default App
