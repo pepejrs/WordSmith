@@ -20,7 +20,7 @@ import { AuthContext } from "../contexts/authContext"
 import axios from "axios"
 
 
-const SAVE_INTERVAL_MS = 2000
+const SAVE_INTERVAL_MS = 6000
 const TOOLBAR_OPTIONS = [
   [{ header: [1, 2, 3, 4, 5, 6, false] }],
   [{ font: [] }],
@@ -43,11 +43,7 @@ export default function TextEditor() {
   const [showModal, setShowModal] = useState(false);
   const [contributorName,setContributorName] =useState("")
   const [socket, setSocket] = useState()
-  const [info,setInfo] =useState({
-    author :Auth.currentUser,
-    contributors : Array.of(Auth.currentUser),
-    title: docTitle
-})
+ 
 
 useEffect(() => {
   const s = io(SERVER_URL)
@@ -63,17 +59,18 @@ useEffect(() => {
     socket.once("load-document", document => {
       setDocTitle(prev=>document.title)
       quill.setContents(document.data)
+      console.log(document.data);
       quill.enable()
     })
-    const infotoGet ={id:documentId,...info}
-    socket.emit("get-document", infotoGet)
+    
+    socket.emit("get-document", {id:documentId,user:Auth.currentUser})
   }, [socket, quill, documentId])
 
   useEffect(() => {
     if (socket == null || quill == null) return
 
     const interval = setInterval(() => {
-      socket.emit("save-document", {data:quill.getContents(),title:docTitle,contributors:info.contributors})
+      socket.emit("save-document", quill.getContents())
     }, SAVE_INTERVAL_MS)
 
     return () => {
@@ -84,11 +81,13 @@ useEffect(() => {
   useEffect(() => {
     if (socket == null || quill == null) return
 
-    const handler = changedData => {
-      quill.updateContents(changedData.delta)
-      setDocTitle(prev=>changedData.title)
+    const handler = delta => {
+      quill.updateContents(delta)
     }
     socket.on("receive-changes", handler)
+    socket.on("title-change",(data)=>{
+      setDocTitle(prev=>data.title)
+    })
 
     return () => {
       socket.off("receive-changes", handler)
@@ -100,7 +99,7 @@ useEffect(() => {
 
     const handler = (delta, oldDelta, source) => {
       if (source !== "user") return
-      socket.emit("send-changes",{delta: delta,title:docTitle})
+      socket.emit("send-changes", delta)
     }
     quill.on("text-change", handler)
 
@@ -123,11 +122,12 @@ useEffect(() => {
     q.setText("Loading...")
     setQuill(q)
   }, [])
-  
+function emitTitle(){
+  socket.emit("title-change",{title:docTitle,id:documentId})
+}
 async function handleAddcontributor(){
-  let newContributors = [...info.contributors,contributorName]
-  let newInfo ={...info,contributors:newContributors}
-  setInfo(prev=>newInfo)
+ 
+  
   const contributorRequest ={
     from :Auth.currentUser,
     to :contributorName,
@@ -145,7 +145,7 @@ async function handleAddcontributor(){
                 size="lg"
                 className="mb-6"
                 value={docTitle}
-                onChange={(e)=>{setDocTitle(prev=>e.target.value)}}
+                onChange={(e)=>{setDocTitle(prev=>e.target.value);emitTitle()}}
                 ></TEInput>
     <div>
       {/* <!-- Button trigger modal --> */}

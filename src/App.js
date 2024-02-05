@@ -20,7 +20,7 @@ import SocketD from "./utils/sockets.js"
 
 function App() {
   
-    
+  
   return (
     <>
     <URLContextProvider>
@@ -33,7 +33,7 @@ function App() {
             <Route path="/users/register" element={<Register/>}></Route>
             <Route path="/mydocuments/:user" element={<ProtectedRoute><MyDocuments/></ProtectedRoute>}></Route>
             <Route path="/myrequests/:user" element={<ProtectedRoute><MyRequests/></ProtectedRoute>}></Route>
-            <Route path="/documents/:id" element={<TextEditor/>}></Route>
+            <Route path="/documents/:id" element={<DocAuthorization><TextEditor/></DocAuthorization>}></Route>
         </Routes>
     </AuthContextProvider>
         

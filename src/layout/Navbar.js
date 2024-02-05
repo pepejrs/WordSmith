@@ -26,8 +26,9 @@ export default function Navbar() {
         <>
     <nav className="w-screen bg-slate-600 px-4 flex flex-row justify-between items-end min-h-max">
   <p>{Auth.currentUser}</p>
+  {Auth.currentUser &&
   <button className="size-5 text-sm bg-sky-600 px-px " onClick={handleLogout}>Logout</button>
-  <button className="size-5 text-sm bg-sky-600 px-px" onClick={handleLogin}>Login</button>
+  }<button className="size-5 text-sm bg-sky-600 px-px" onClick={handleLogin}>Login</button>
   
   <Link to={`/myDocuments/${Auth.currentUser}`}>
   <button className="size-5 text-sm bg-sky-600 px-px" >MyDocuments
