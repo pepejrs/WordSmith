@@ -18,6 +18,7 @@ import {
 import { AuthContext } from "../contexts/authContext"
 
 import axios from "axios"
+import TextToSpeech from "./TextToSpeech"
 
 
 const SAVE_INTERVAL_MS = 6000
@@ -43,6 +44,7 @@ export default function TextEditor() {
   const [showModal, setShowModal] = useState(false);
   const [contributorName,setContributorName] =useState("")
   const [socket, setSocket] = useState()
+  const [currentText, setCurrentText] = useState("/n")
  
 
 useEffect(() => {
@@ -100,6 +102,8 @@ useEffect(() => {
     const handler = (delta, oldDelta, source) => {
       if (source !== "user") return
       socket.emit("send-changes", delta)
+      const cText =quill.getText()
+      setCurrentText(prev=>cText)
     }
     quill.on("text-change", handler)
 
@@ -226,6 +230,7 @@ async function handleAddcontributor(){
         </TEModalDialog>
       </TEModal>
     </div>
+    <TextToSpeech text={currentText}/>
   <div className="container" ref={wrapperRef}></div>
   
                 </>
