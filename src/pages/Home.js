@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import Features from "../layout/Features";
 import Footer from "../layout/Footer";
 import Team from "../layout/Team";
@@ -6,7 +7,7 @@ import Video from "../layout/Video";
 // Mentor name left in Footer.js
 // Github link addition left in Team.js
 // Video uploading left on Video.js from youtube
-// Linking try now button to the corrent route
+// Linking try now button to the corrent route ---Done
 // WordSmith logo pending in Footer.js
 //Feature paragraph left in Feature.js
 
@@ -29,13 +30,13 @@ export default function Home() {
               Create and collaborate on online documents in real time and along
               with genuine AI suggestions.
             </p>
-            <button class="group relative uppercase mt-10 h-10 w-48 overflow-hidden rounded-lg bg-white text-lg shadow">
+            <Link to={"/users/login"}><button class="group relative uppercase mt-10 h-10 w-48 overflow-hidden rounded-lg bg-white text-lg shadow">
               <div class="absolute inset-0 w-3 bg-amber-200 transition-all duration-[250ms] ease-out group-hover:w-full"></div>
               <span class="relative text-black group-hover:text-gray-600">
                 Try now
                 {/* Try Now */}
               </span>
-            </button>
+            </button></Link>
           </div>
         </div>
       </div>

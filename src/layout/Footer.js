@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -15,14 +16,14 @@ const Footer = () => {
               <em className="text-gray-800">"WordSmith"</em>
             </p>
 
-            <div class="flex flex-col mt-4 sm:flex-row sm:items-center sm:justify-center">
-              <button class="group relative uppercase mt-5 h-10 w-48 overflow-hidden rounded-lg bg-white text-lg shadow">
+           <div class="flex flex-col mt-4 sm:flex-row sm:items-center sm:justify-center">
+           <Link to={"/users/login"}> <button class="group relative uppercase mt-5 h-10 w-48 overflow-hidden rounded-lg bg-white text-lg shadow">
                 <div class="absolute inset-0 w-3 bg-amber-200 transition-all duration-[250ms] ease-out group-hover:w-full"></div>
                 <span class="relative text-black group-hover:text-gray-600">
                   Try now
                   {/* Try now */}
                 </span>
-              </button>
+              </button></Link>
             </div>
           </div>
 
