@@ -14,7 +14,10 @@ const Member = (props) => {
         <div class="text-center">
           <p class="text-xl text-gray-700 font-bold mb-2">{props.name}</p>
           <p class="text-base text-gray-400 font-normal">{props.role}</p>
-          <p class="text-base text-gray-400 font-normal">{props.github}</p>
+          {/* <p class="text-base text-gray-400 font-normal">{props.github}</p> */}
+          <a href={props.github} target="_blank">
+            <i class="fa-brands fa-2x fa-github pt-3"></i>
+          </a>
         </div>
       </div>
     </>

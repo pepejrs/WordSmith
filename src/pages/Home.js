@@ -4,11 +4,11 @@ import Footer from "../layout/Footer";
 import Team from "../layout/Team";
 import Video from "../layout/Video";
 
-// Mentor name left in Footer.js
-// Github link addition left in Team.js
+// Mentor name left in Footer.js --Done
+// Github link addition left in Team.js --Done
 // Video uploading left on Video.js from youtube
 // Linking try now button to the corrent route ---Done
-// WordSmith logo pending in Footer.js
+// WordSmith logo pending in Footer.js --Done
 //Feature paragraph left in Feature.js
 
 export default function Home() {

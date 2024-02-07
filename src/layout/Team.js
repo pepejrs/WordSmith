@@ -11,20 +11,20 @@ const Team = () => {
             Check out our team__
           </h1>
         </div>
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-6">
           <Member
             gif={"https://i.gifer.com/xw.gif"}
             name={"Fezaan Hussain"}
             role={"Frontend Engineer"}
-            github={""}
+            github={"https://github.com/Fezaan"}
           />
           <Member
             gif={"https://i.gifer.com/o6m.gif"}
             name={"Shubham Mishra"}
             role={"Backend Engineer"}
-            github={""}
+            github={"https://github.com/mshubham0403"}
           />
-          <Member
+          {/* <Member
             gif={"https://i.gifer.com/Xqg8.gif"}
             name={"Tanmay Kachroo"}
             role={"Figma Designer"}
@@ -39,9 +39,9 @@ const Team = () => {
           <Member
             gif={"https://i.gifer.com/6oa.gif"}
             name={"Rahul"}
-            role={"Nalla"}
-            github={""}
-          />
+            role={""}
+            github={""} 
+          /> */}
         </div>
       </div>
     </>

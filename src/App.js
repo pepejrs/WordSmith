@@ -1,7 +1,7 @@
 import TextEditor from "./components/TextEditor.js"
 import Home from "./pages/Home.js"
 import {Routes,Route} from "react-router-dom"
-import { v4 as uuidV4 } from "uuid"
+// import { v4 as uuidV4 } from "uuid"
 import { URLContextProvider } from "./contexts/URLContext.js"
 import { AuthContextProvider } from "./contexts/authContext.js"
 
@@ -12,10 +12,10 @@ import Navbar from "./layout/Navbar.js"
 import MyDocuments from "./pages/myDocuments.js"
 import DocAuthorization from "./utils/docAuthorization.js"
 import MyRequests from "./pages/myRequests.js"
-import { Outlet } from "react-router-dom"
-import {io} from "socket.io-client"
-import { useEffect, useState } from "react"
-import SocketD from "./utils/sockets.js"
+// import { Outlet } from "react-router-dom"
+// import {io} from "socket.io-client"
+// import { useEffect, useState } from "react"
+// import SocketD from "./utils/sockets.js"
 
 
 function App() {
