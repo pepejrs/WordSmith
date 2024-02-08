@@ -29,44 +29,69 @@ export default function MyRequests() {
       `${SERVER_URL}/requests/acceptRequest`,
       { reqId: id }
     );
-    
+
     getRequests();
   }
 
   return (
     <>
-      <h1>pending requests</h1>
-      <button
-        onClick={getRequests}
-        type="button"
-        className="inline-block rounded bg-primary px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]"
-      >
-        refresh
-      </button>
-      <ul className="w-96">
-        {requestList.map((request) => (
-          <li
-            key={request._id}
-            className="w-full border-b-2 border-neutral-100 border-opacity-100 py-4 dark:border-opacity-50"
-          >
-            {request.from}
-            <button
-              onClick={() => acceptRequest(request._id)}
-              type="button"
-              className="inline-block rounded bg-primary px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]"
-            >
-              Accept
-            </button>
-            <button
-              onClick={() => deleteRequest(request._id)}
-              type="button"
-              className="inline-block rounded bg-primary px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]"
-            >
-              delete
-            </button>
-          </li>
-        ))}
-      </ul>
+      <div className="bg-[#f7d0b6] h-screen w-full">
+        <div className="pt-20 pb-0">
+          <div className=" mx-auto flex justify-center items-center">
+            <div className="max-w-xl">
+              <h2 className="font-black text-sky-950 text-5xl ">My Requests</h2>
+            </div>
+          </div>
+        </div>
+        <div className="py-20">
+          <div class=" overflow-hidden rounded border-b border-gray-200">
+            <table class="min-w-2.5 m-auto bg-white">
+              <thead class="bg-gray-800 text-white">
+                <tr>
+                  <th class="w-1/3 text-left py-3 px-4 uppercase font-semibold text-sm">
+                    S.N.
+                  </th>
+                  <th class="w-1/3 text-left py-3 px-4 uppercase font-semibold text-sm">
+                    Request From
+                  </th>
+                  <th class="text-left py-3 px-4 uppercase font-semibold text-sm">
+                    Accept
+                  </th>
+                  <th class="text-left py-3 px-4 uppercase font-semibold text-sm">
+                    Decline
+                  </th>
+                </tr>
+              </thead>
+              <tbody class="text-gray-700">
+                {requestList.map((request, index) => {
+                  console.log(request);
+                  return (
+                    <tr key={request._id}>
+                      <td class="w-1/3 text-left py-3 px-4">{index}</td>
+                      <td class="w-1/3 text-left py-3 px-4">{request.from}</td>
+                      <td className="px-6 hover:text-green-400">
+                        <i
+                          class="fa-regular fa-2x fa-circle-check"
+                          onClick={() => acceptRequest(request._id)}
+                        ></i>
+                      </td>
+                      <td className="px-6 hover:text-red-600">
+                        <i
+                          class="fa-regular fa-2x fa-circle-xmark"
+                          onClick={() => deleteRequest(request._id)}
+                        ></i>
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class=" max-w-lg p-10 container flex justify-center mx-auto pb-48">
+          <div class="flex flex-row mx-auto gap-48"></div>
+        </div>
+      </div>
     </>
   );
 }

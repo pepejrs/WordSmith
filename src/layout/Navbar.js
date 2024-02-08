@@ -20,10 +20,10 @@ export default function Navbar() {
 
   return (
     <>
-      <nav className="bg-gray-600 shadow dark:bg-gray-800 sticky top-0 z-50 w-full py-3">
+      <nav className="bg-gray-600 shadow dark:bg-gray-800 sticky top-0 z-50 w-full h-20 py-3">
         <div className="container flex items-center justify-center p-6 mx-auto text-gray-600 capitalize dark:text-gray-300 ">
           <Link to={`/`}>
-            <h3 className="text-amber-200 absolute left-10 top-4 text-2xl font-semibold">
+            <h3 className="text-amber-200 absolute left-10 top-5 text-2xl font-semibold">
               WordSmith
             </h3>
           </Link>
@@ -32,30 +32,30 @@ export default function Navbar() {
             <>
               <Link
                 to="/"
-                className="text-white dark:text-gray-200 border-b-2 border-amber-200 mx-1.5 sm:mx-6"
+                className="border-b-2 border-transparent text-white hover:text-neutral-200 dark:hover:text-neutral-200 hover:border-amber-200 mx-1.5 sm:mx-6 -mt-3"
               >
                 home
               </Link>
 
               <Link
                 to={`/myDocuments/${Auth.currentUser}`}
-                className="border-b-2 border-transparent text-white hover:text-neutral-200 dark:hover:text-neutral-200 hover:border-amber-200 mx-1.5 sm:mx-6"
+                className="border-b-2 border-transparent text-white hover:text-neutral-200 dark:hover:text-neutral-200 hover:border-amber-200 mx-1.5 sm:mx-6 -mt-3"
               >
                 Documents
               </Link>
 
               <Link
                 to={`/myRequests/${Auth.currentUser}`}
-                className="border-b-2 border-transparent text-white hover:text-neutral-200 dark:hover:text-neutral-200 hover:border-amber-200 mx-1.5 sm:mx-6"
+                className="border-b-2 border-transparent text-white hover:text-neutral-200 dark:hover:text-neutral-200 hover:border-amber-200 mx-1.5 sm:mx-6 -mt-3"
               >
                 Requests
               </Link>
               <button
-                className="group absolute right-10 h-10 w-48 overflow-hidden rounded-lg bg-white text-lg shadow"
+                className="group absolute right-10 top-5 h-10 w-48 overflow-hidden rounded-lg bg-white text-lg shadow"
                 onClick={handleLogout}
               >
                 <div className="absolute inset-0 w-3 bg-amber-200 transition-all duration-[250ms] ease-out group-hover:w-full"></div>
-                <span className="relative text-black group-hover:text-gray-600">
+                <span className="relative text-black group-hover:text-gray-600 uppercase">
                   Logout
                 </span>
               </button>
@@ -66,7 +66,7 @@ export default function Navbar() {
               onClick={handleLogin}
             >
               <div className="absolute inset-0 w-3 bg-amber-200 transition-all duration-[250ms] ease-out group-hover:w-full"></div>
-              <span className="relative text-black group-hover:text-gray-600">
+              <span className="relative text-black group-hover:text-gray-600 uppercase">
                 Login
               </span>
             </button>
