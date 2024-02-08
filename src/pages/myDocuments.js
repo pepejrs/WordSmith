@@ -14,10 +14,29 @@ function MyDocuments() {
   }, []);
   async function getDocs() {
     try {
-      const res = await axios.post(`${SERVER_URL}/fetchdocs`, {
+      const res = await axios.post(`${SERVER_URL}/docs/fetchDocuments`, {
         username: Auth.currentUser,
       });
       setDoclist((prev) => res.data.doclist);
+    } catch (error) {
+      console.log("error", error);
+    }
+  }
+
+  async function deleteDocument(documentId) {
+    try {
+      const res = await axios.post(`${SERVER_URL}/docs/deleteDocuments`, {
+        username: Auth.currentUser,
+        documentId:documentId
+      });
+      if (res.data.result==="success"){
+        getDocs();
+        console.log("successfully deleted");
+      }
+      else{
+        console.log("access denied");
+
+      }
     } catch (error) {
       console.log("error", error);
     }
@@ -49,6 +68,9 @@ function MyDocuments() {
                   <th class="text-left py-3 px-4 uppercase font-semibold text-sm">
                     Id
                   </th>
+                  <th class="text-left py-3 px-4 uppercase font-semibold text-sm">
+                    Decline
+                  </th>
                 </tr>
               </thead>
               <tbody class="text-gray-700">
@@ -65,6 +87,10 @@ function MyDocuments() {
                         >
                           {doci._id}
                         </Link>
+
+                      </td>
+                      <td>
+                        <button onClick={()=>{deleteDocument(doci._id)}}><i class="px-5 fa-solid fa-trash-can"></i></button>
                       </td>
                     </tr>
                   );

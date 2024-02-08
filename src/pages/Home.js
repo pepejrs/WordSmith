@@ -10,6 +10,8 @@ import Video from "../layout/Video";
 // Linking try now button to the corrent route ---Done
 // WordSmith logo pending in Footer.js --Done
 //Feature paragraph left in Feature.js
+// add profile icon in navbar
+// check table  size issue in mydocuments
 
 export default function Home() {
   return (
