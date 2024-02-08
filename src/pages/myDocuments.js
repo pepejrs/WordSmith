@@ -21,8 +21,129 @@ function MyDocuments(){
             console.log("error",error);
         }
     }
-  
-    return(
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+    async function deleteDocument(){
+    try{
+      const res = await axios.post(`${SERVER_URL}/deleteDocument`,{username:Auth.currentUser})
+      if (res.data.result ==="success"){
+        getDocs()
+      }
+      else if (res.data.result==="access denied"){
+        console.log("you are not authorized to delete");
+      }
+    }
+    catch(error){
+      console.log(error,"could not delete");
+    }
+   }
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   return(
      <>
       <h1>My documents</h1>
       <AddDocuments/>
@@ -30,8 +151,11 @@ function MyDocuments(){
         {doclist.map((doci) => {
           console.log(doci);
           return(
+            <>
           <Link to={`/Documents/${doci._id}`}><li className="m-3" key={doci._id}> title: {doci.title} id: {doci._id}</li></Link>
-        )
+        <button onClick={deleteDocument}>delete</button>
+            </>
+          )
       }
         )}
       </ol>
