@@ -15,7 +15,7 @@ const Video = () => {
       <div className="justify-center flex p-10 my-10">
         <iframe
           className="w-3/5 h-screen rounded-lg border-spacing-2 border-2"
-          src="https://www.youtube.com/embed/EE-xtCF3T94?si=3fMnmA7fyFiKT5YF"
+          src="https://www.youtube.com/embed/uzJBcI5ZBkM"
           title="YouTube video player"
           allow="accelerometer; autoplay; encrypted-media;"
         ></iframe>
