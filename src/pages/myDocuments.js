@@ -10,7 +10,9 @@ function MyDocuments() {
   const SERVER_URL = useContext(URLContext);
   const Auth = useContext(AuthContext);
   useEffect(() => {
-    getDocs();
+    setInterval(()=>{
+      getDocs();
+    },2000)
   }, []);
   async function getDocs() {
     try {

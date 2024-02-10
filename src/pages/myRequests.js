@@ -8,7 +8,9 @@ export default function MyRequests() {
   const [requestList, setRequestList] = useState(["a", "b", "c"]);
 
   useEffect(() => {
-    getRequests();
+    setInterval(()=>{
+      getRequests();
+    },2000)
   }, []);
   async function getRequests() {
     const res = await axios.post(`${SERVER_URL}/requests/fetchReq`, {
