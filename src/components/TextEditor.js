@@ -313,14 +313,18 @@ export default function TextEditor() {
   //       </TEModal>
   //     </div>
 
-  //     <TextToSpeech text={currentText} />
-
-  //     <div className="container" ref={wrapperRef}></div>
   //   </>
   // );
-  return(
+  return (
     <>
-    <ChatPanel quill={quill} />;
-    </> 
-  )
+      <div className="bg-amber-50 w-full h-screen">
+        <ChatPanel className="z-30" quill={quill} />;
+        <div
+          className=" h-96 px-48 my-20 text-gray-700 font-semibold"
+          ref={wrapperRef}
+        ></div>
+        <TextToSpeech text={currentText} />
+      </div>
+    </>
+  );
 }

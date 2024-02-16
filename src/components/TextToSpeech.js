@@ -72,7 +72,7 @@ const TextToSpeech = ({ text }) => {
 
   return (
     <div>
-      <label>
+      {/* <label>
         Voice:
         <select value={voice?.name} onChange={handleVoiceChange}>
           {window.speechSynthesis.getVoices().map((voice) => (
@@ -127,7 +127,27 @@ const TextToSpeech = ({ text }) => {
 
       <button onClick={handlePlay}>{isPaused ? "Resume" : "Play"}</button>
       <button onClick={handlePause}>Pause</button>
-      <button onClick={handleStop}>Stop</button>
+      <button onClick={handleStop}>Stop</button> */}
+      <div class="mt-6 flex justify-center items-center">
+        <div>
+          <button
+            class="p-4 rounded-xl bg-gray-200 hover:bg-amber-300 text-gray-500 mx-4"
+            onClick={handlePlay}
+          >
+            {isPaused ? (
+              <i class="hover:text-red-600 fa-solid fa-pause fa-2x"></i>
+            ) : (
+              <i class="hover:text-red-600 fa-solid fa-play fa-2x"></i>
+            )}
+          </button>
+        </div>
+        <button
+          class="p-3 rounded-xl bg-gray-200 hover:bg-amber-300 focus:outline-none"
+          onClick={handleStop}
+        >
+          <i class="hover:text-black text-red-600 fa-solid fa-circle-stop fa-1.5x"></i>
+        </button>
+      </div>
     </div>
   );
 };

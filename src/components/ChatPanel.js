@@ -22,7 +22,7 @@ export default function ChatPanel(props) {
       let userPrompt = prompt;
       setPrompt((prev) => "");
       const res = await axios.post(serverurl + "/chat/generateResponse", {
-        quillText: "props.quill.getText()",
+        quillText: props.quill.getText(),
         prompt: userPrompt,
       });
       let data = res.data;
@@ -37,7 +37,7 @@ export default function ChatPanel(props) {
   return (
     <>
       <button
-        class="fixed bottom-4 right-4 inline-flex items-center justify-center text-sm font-medium disabled:pointer-events-none disabled:opacity-50 border rounded-full w-16 h-16 bg-black hover:bg-gray-700 m-0 cursor-pointer border-gray-200 bg-none p-0 normal-case leading-5 hover:text-gray-900"
+        class="fixed z-20 bottom-4 right-4 inline-flex items-center justify-center text-sm font-medium disabled:pointer-events-none disabled:opacity-50 border rounded-full w-16 h-16 bg-black hover:bg-gray-700 m-0 cursor-pointer border-gray-200 bg-none p-0 normal-case leading-5 hover:text-gray-900"
         type="button"
         aria-haspopup="dialog"
         aria-expanded="false"
@@ -70,7 +70,7 @@ export default function ChatPanel(props) {
           style={{
             boxShadow: "0 0 #0000, 0 0 #0000, 0 1px 2px 0 rgb(0 0 0 / 0.05)",
           }}
-          class="fixed bottom-[calc(4rem+1.5rem)] right-0 mr-4 bg-white p-6 rounded-lg border border-[#e5e7eb] w-[440px] h-[634px]"
+          class="fixed z-20 bottom-[calc(4rem+1.5rem)] right-0 mr-4 bg-white p-6 rounded-lg border border-[#e5e7eb] w-[440px] h-[634px]"
         >
           <div class="flex flex-col space-y-1.5 pb-6">
             <h2 class="font-semibold text-lg tracking-tight">Chatbot</h2>
