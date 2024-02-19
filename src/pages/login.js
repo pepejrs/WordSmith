@@ -12,16 +12,16 @@ export default function Login() {
   const SERVER_URL = useContext(URLContext);
   const authContext = useContext(AuthContext);
 
+
   const navigate = useNavigate();
   async function handleSubmit(e) {
     e.preventDefault();
     try {
-      await authContext.login({ username, password });
-      alert("login success");
-
-      navigate(`../../myDocuments/${username}`, { relative: "path" });
+      const result =await authContext.login({ username, password });
+      setTimeout(()=>{ navigate(`../../myDocuments/${username}`, { relative: "path" });},1500)
     } catch (error) {
       if (error.response) {
+      
         // The request was made, but the server responded with a non-2xx status code
         console.error(
           "Response error:",
@@ -39,6 +39,7 @@ export default function Login() {
   }
 
   return (
+    
     <div class="bg-amber-50 flex justify-center items-center h-full">
       <div class="w-11/12 h-screen hidden lg:block">
         <img
@@ -104,6 +105,7 @@ export default function Login() {
             Don't have an account yet? Register here
           </Link>
         </div>
+
       </div>
     </div>
   );
