@@ -24,7 +24,7 @@ const Team = () => {
             role={"Backend Engineer"}
             github={"https://github.com/mshubham0403"}
           />
-          {/* <Member
+          <Member
             gif={"https://i.gifer.com/Xqg8.gif"}
             name={"Tanmay Kachroo"}
             role={"Figma Designer"}
@@ -33,15 +33,15 @@ const Team = () => {
           <Member
             gif={"https://i.gifer.com/L6MI.gif"}
             name={"Anand Raj"}
-            role={"ML man"}
+            role={"AI model integration"}
             github={""}
           />
           <Member
             gif={"https://i.gifer.com/6oa.gif"}
             name={"Rahul"}
-            role={""}
+            role={"prompt refining"}
             github={""} 
-          /> */}
+          />
         </div>
       </div>
     </>

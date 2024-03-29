@@ -4,6 +4,8 @@ import { TEInput, TERipple } from "tw-elements-react";
 import axios from "axios";
 import { URLContext } from "../contexts/URLContext";
 import { v4 as uuid } from "uuid";
+import { toast, ToastContainer } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
 
 export default function Register() {
   const [username, setUsername] = useState("");
@@ -20,7 +22,7 @@ export default function Register() {
         password,
       });
       console.log(res);
-      alert("register success");
+      toast.success("Register Success")
       setTimeout(() => navigate("/users/login"), 1500);
     } catch (error) {
       if (error.response) {
@@ -30,6 +32,7 @@ export default function Register() {
           error.response.status,
           error.response.data
         );
+        toast.error("Error in Registration")
       } else if (error.request) {
         // The request was made, but no response was received
         console.error("Request error:", error.request);
@@ -42,6 +45,7 @@ export default function Register() {
 
   return (
     <div class="bg-amber-50 flex justify-center items-center h-full">
+      <ToastContainer/>
       <div class="w-11/12 h-screen hidden lg:block">
         <img
           src="https://tecdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"

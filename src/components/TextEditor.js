@@ -20,6 +20,7 @@ import { AuthContext } from "../contexts/authContext";
 import axios from "axios";
 import TextToSpeech from "./TextToSpeech";
 import ChatPanel from "./ChatPanel";
+import { toast } from "react-toastify";
 
 const SAVE_INTERVAL_MS = 6000;
 const TOOLBAR_OPTIONS = [
@@ -135,189 +136,124 @@ export default function TextEditor() {
       to: contributorName,
       documentId: documentId,
     };
+    try{
     const response = await axios.post(
       `${SERVER_URL}/requests/addContributor`,
       contributorRequest
     );
+    toast.success("Request to add sent!")
     console.log(response);
+    }
+    catch{
+      toast.error("Error while sending request :(")
+    }
   }
 
-  // return (
-  //   <>
-  //     <div className="py-10 w-96 pl-10">
-  //       <TEInput
-  //         type="title"
-  //         label="Document Title"
-  //         size="lg"
-  //         className="mb-6"
-  //         value={docTitle}
-  //         onChange={(e) => {
-  //           setDocTitle((prev) => e.target.value);
-  //           emitTitle();
-  //         }}
-  //       ></TEInput>
-  //     </div>
-  //     <div>
-  //       {/* <!-- Button trigger modal --> */}
-  //       <TERipple rippleColor="white">
-  //         <button
-  //           type="button"
-  //           className="inline-block rounded bg-primary px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]"
-  //           onClick={() => setShowModal(true)}
-  //         >
-  //           Add Contributors
-  //         </button>
-  //       </TERipple>
-
-  //       {/* <!-- Modal --> */}
-  //       <TEModal show={showModal} setShow={setShowModal}>
-  //         <TEModalDialog>
-  //           <TEModalContent>
-  //             <TEModalHeader>
-  //               {/* <!--Modal title--> */}
-  //               <h5 className="text-xl font-medium leading-normal text-neutral-800 dark:text-neutral-200">
-  //                 contributors
-  //               </h5>
-  //               {/* <!--Close button--> */}
-  //               <button
-  //                 type="button"
-  //                 className="box-content rounded-none border-none hover:no-underline hover:opacity-75 focus:opacity-100 focus:shadow-none focus:outline-none"
-  //                 onClick={() => setShowModal(false)}
-  //                 aria-label="Close"
-  //               >
-  //                 <svg
-  //                   xmlns="http://www.w3.org/2000/svg"
-  //                   fill="none"
-  //                   viewBox="0 0 24 24"
-  //                   strokeWidth="1.5"
-  //                   stroke="currentColor"
-  //                   className="h-6 w-6"
-  //                 >
-  //                   <path
-  //                     strokeLinecap="round"
-  //                     strokeLinejoin="round"
-  //                     d="M6 18L18 6M6 6l12 12"
-  //                   />
-  //                 </svg>
-  //               </button>
-  //             </TEModalHeader>
-  //             {/* <!--Modal body--> */}
-  //             <TEModalBody>
-  //               <TEInput
-  //                 type="user"
-  //                 label="contributor username"
-  //                 size="lg"
-  //                 className="mb-6"
-  //                 onChange={(e) => {
-  //                   setContributorName((prev) => e.target.value);
-  //                 }}
-  //               ></TEInput>
-  //             </TEModalBody>
-  //             <TEModalFooter>
-  //               <TERipple rippleColor="light">
-  //                 <button
-  //                   type="button"
-  //                   className="inline-block rounded bg-primary-100 px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-primary-700 transition duration-150 ease-in-out hover:bg-primary-accent-100 focus:bg-primary-accent-100 focus:outline-none focus:ring-0 active:bg-primary-accent-200"
-  //                   onClick={() => setShowModal(false)}
-  //                 >
-  //                   Close
-  //                 </button>
-  //               </TERipple>
-  //               <TERipple rippleColor="light">
-  //                 <button
-  //                   type="button"
-  //                   onClick={handleAddcontributor}
-  //                   className="ml-1 inline-block rounded bg-primary px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]"
-  //                 >
-  //                   Save changes
-  //                 </button>
-  //               </TERipple>
-  //             </TEModalFooter>
-  //           </TEModalContent>
-  //         </TEModalDialog>
-  //       </TEModal>
-  //     </div>
-
-  //     {/* chat panel modal */}
-
-  //     <div>
-  //       {/* <!-- Button trigger modal --> */}
-  //       <TERipple rippleColor="white">
-  //         <button
-  //           type="button"
-  //           className="inline-block rounded bg-primary px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]"
-  //           onClick={() => setShowChatModal(true)}
-  //         >
-  //           chat button
-  //         </button>
-  //       </TERipple>
-
-  //       {/* <!-- Modal --> */}
-  //       <TEModal show={showChatModal} setShow={setShowChatModal}>
-  //         <TEModalDialog>
-  //           <TEModalContent>
-  //             <TEModalHeader>
-  //               {/* <!--Modal title--> */}
-  //               <h5 className="text-xl font-medium leading-normal text-neutral-800 dark:text-neutral-200">
-  //                 Ai chat bot
-  //               </h5>
-  //               {/* <!--Close button--> */}
-  //               <button
-  //                 type="button"
-  //                 className="box-content rounded-none border-none hover:no-underline hover:opacity-75 focus:opacity-100 focus:shadow-none focus:outline-none"
-  //                 onClick={() => setShowChatModal(false)}
-  //                 aria-label="Close"
-  //               >
-  //                 <svg
-  //                   xmlns="http://www.w3.org/2000/svg"
-  //                   fill="none"
-  //                   viewBox="0 0 24 24"
-  //                   strokeWidth="1.5"
-  //                   stroke="currentColor"
-  //                   className="h-6 w-6"
-  //                 >
-  //                   <path
-  //                     strokeLinecap="round"
-  //                     strokeLinejoin="round"
-  //                     d="M6 18L18 6M6 6l12 12"
-  //                   />
-  //                 </svg>
-  //               </button>
-  //             </TEModalHeader>
-  //             {/* <!--Modal body--> */}
-  //             <TEModalBody>
-  //               <ChatPanel quill={quill} />
-  //             </TEModalBody>
-  //             <TEModalFooter>
-  //               <TERipple rippleColor="light">
-  //                 <button
-  //                   type="button"
-  //                   className="inline-block rounded bg-primary-100 px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-primary-700 transition duration-150 ease-in-out hover:bg-primary-accent-100 focus:bg-primary-accent-100 focus:outline-none focus:ring-0 active:bg-primary-accent-200"
-  //                   onClick={() => setShowChatModal(false)}
-  //                 >
-  //                   Close
-  //                 </button>
-  //               </TERipple>
-  //               <TERipple rippleColor="light">
-  //                 <button
-  //                   type="button"
-  //                   onClick={() => setShowChatModal(false)}
-  //                   className="ml-1 inline-block rounded bg-primary px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]"
-  //                 >
-  //                   Save changes
-  //                 </button>
-  //               </TERipple>
-  //             </TEModalFooter>
-  //           </TEModalContent>
-  //         </TEModalDialog>
-  //       </TEModal>
-  //     </div>
-
-  //   </>
-  // );
   return (
     <>
-      <div className="bg-amber-50 w-full h-screen">
+    <div className="bg-amber-50 w-full h-screen">
+        <div className="flex items-center py-4">
+          <div className="w-96 pl-10 flex-grow">
+            <TEInput
+              type="title"
+              label="Document Title"
+              size="lg"
+              className="mb-6"
+              value={docTitle}
+              onChange={(e) => {
+                setDocTitle((prev) => e.target.value);
+                emitTitle();
+              }}
+            />
+          </div>
+          <TERipple rippleColor="amber-100">
+            <button
+              type="button"
+              onClick={() => setShowModal(true)}
+              style={{color:"black"}}
+              className="inline-block rounded-full bg-amber-700 mx-6 px-4 py-2 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-amber-400 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-amber-400 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-amber-300 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)]"
+          
+          >
+            Add Contributors
+          </button>
+        </TERipple>
+
+        {/* <!-- Modal --> */}
+        <TEModal show={showModal} setShow={setShowModal}>
+          <TEModalDialog>
+            <TEModalContent>
+              <TEModalHeader>
+                {/* <!--Modal title--> */}
+                <h5 className="text-xl font-medium leading-normal text-neutral-800 dark:text-neutral-200">
+                  contributors
+                </h5>
+                {/* <!--Close button--> */}
+                <button
+                  type="button"
+                  className="box-content rounded-none border-none hover:no-underline hover:opacity-75 focus:opacity-100 focus:shadow-none focus:outline-none"
+                  onClick={() => setShowModal(false)}
+                  aria-label="Close"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth="1.5"
+                    stroke="currentColor"
+                    className="h-6 w-6"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M6 18L18 6M6 6l12 12"
+                    />
+                  </svg>
+                </button>
+              </TEModalHeader>
+              {/* <!--Modal body--> */}
+              <TEModalBody>
+                <TEInput
+                  type="user"
+                  label="contributor username"
+                  size="lg"
+                  className="mb-6"
+                  onChange={(e) => {
+                    setContributorName((prev) => e.target.value);
+                  }}
+                ></TEInput>
+              </TEModalBody>
+              <TEModalFooter>
+                <TERipple rippleColor="amber-100">
+                  <button
+                    type="button"
+                    style={{color:"black"}}
+                    className="inline-block rounded bg-amber-700 mx-6 px-4 py-2 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-amber-400 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-amber-400 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-amber-300 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)]"
+                    onClick={() => setShowModal(false)}
+                    >
+                    Cancel
+                  </button>
+                </TERipple>
+                <TERipple rippleColor="amber-100">
+                  <button
+                    style={{color:"black"}}
+                    type="button"
+                    onClick={handleAddcontributor}
+                    className="ml-1 inline-block rounded bg-amber-700 mx-6 px-4 py-2 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-amber-400 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-amber-400 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-amber-300 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)]"
+                  >
+                    ADD
+                  </button>
+                </TERipple>
+              </TEModalFooter>
+            </TEModalContent>
+          </TEModalDialog>
+        </TEModal>
+      </div>
+
+
+
+ 
+    
+     
         <ChatPanel className="z-30" quill={quill} />;
         <div
           className=" h-96 px-48 my-20 text-gray-700 font-semibold"
@@ -327,4 +263,5 @@ export default function TextEditor() {
       </div>
     </>
   );
+ 
 }
