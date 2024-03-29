@@ -81,23 +81,18 @@ export default function Login() {
               autocomplete="off"
             />
           </div>
-          <div class="mb-4 flex items-center">
-            <input
-              type="checkbox"
-              id="remember"
-              name="remember"
-              class="text-blue-500"
-            />
-            <label for="remember" class="text-gray-600 ml-2">
-              Remember Me
-            </label>
-          </div>
+         
           <button
             type="submit"
-            class="bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded-md py-2 px-4 w-full"
+            className="group relative  mt-10 h-10 w-48 overflow-hidden rounded-lg bg-white text-lg shadow"
             onClick={handleSubmit}
           >
+            <div className="absolute inset-0 w-3 bg-amber-200 transition-all duration-[250ms] ease-out group-hover:w-full"></div>
+              <span className="relative text-black group-hover:text-gray-600">
+          
             Login
+                
+              </span>
           </button>
         </form>
         <div class="mt-6 text-blue-500 text-center">
